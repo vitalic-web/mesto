@@ -1,3 +1,8 @@
-.header {
+@import url(../header/__logo/header__logo.css);
 
+.header {
+  display: flex;
+  width: calc(100% * 882/1280);
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+  margin: 45px 0 36.25px;
 }
