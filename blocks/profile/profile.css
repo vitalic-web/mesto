@@ -1,3 +1,8 @@
-.profile {
+@import url(./__add-button/profile__add-button.css);
+@import url(./__avatar/profile__avatar.css);
+@import url(./__info/profile__info.css);
 
+.profile {
+  display: flex;
+  width: 100%;
 }
