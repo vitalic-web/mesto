@@ -1,4 +1,5 @@
 .profile__avatar {
   border-radius: 50%;
-  width: calc(100% * 120/882);
+  /* width: calc(100% * 120/608); */
+  width: 120px;
 }
