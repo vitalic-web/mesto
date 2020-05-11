@@ -1,0 +1,18 @@
+@import url(./__container/popup__container.css);
+@import url(./__close-icon/popup__close-icon.css);
+
+.popup {
+  display: none;
+  /* width: 100%; */
+  min-height: 100vh;
+  background-color: rgba(00, 00, 00, .5);
+  /* opacity: .5; */
+  position: absolute;
+  top: 0;
+  /* bottom: 0; */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
