@@ -1,0 +1,4 @@
+.popup__input-form {
+  border-bottom: 1px solid rgba(00, 00, 00, .2);
+  width: calc(100% * 358/430);
+}
