@@ -3,7 +3,10 @@
   border-radius: 2px;
   width: calc(100% * 150/882);
   height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: transparent;
+  color: white;
+  padding: 0;
+  background-image: url(../../../images/profile__add-button-plus.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }

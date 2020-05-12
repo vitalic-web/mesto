@@ -1,4 +1,10 @@
 .profile__title-button {
   width: 24px;
+  padding-bottom: 24px;
+  background-image: url(../../../images/profile__title-button.svg);
+  background-position: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
   /* align-self: baseline; */
 }

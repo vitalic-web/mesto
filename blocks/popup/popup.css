@@ -5,13 +5,13 @@
 @import url(./__save-button/popup__save-button.css);
 
 .popup {
-  /* display: none; */
+  display: none;
   min-width: 100%;
   background-color: rgba(00, 00, 00, .5);
   position: absolute;
   top: 0;
   bottom: 0;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
 }
