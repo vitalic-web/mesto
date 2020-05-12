@@ -1,3 +1,14 @@
 .popup__input {
   border: none;
+  margin-bottom: 13.4px;
+  font-size: 14px;
+  line-height: 17px;
+  border-bottom: 1px solid rgba(00, 00, 00, .2);
+  width: calc(100% * 358/430);
+  padding-bottom: 13.35px;
+  margin: 0;
+}
+
+.popup__input:nth-child(2) {
+  margin: 0 0 30px;
 }

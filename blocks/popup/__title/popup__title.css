@@ -1,5 +1,5 @@
 .popup__title {
   color: black;
-  margin: 0;
+  margin: 34px 0 54px;
   width: calc(100% * 358/430);
 }

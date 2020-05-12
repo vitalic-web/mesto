@@ -2,20 +2,15 @@
 @import url(./__close-icon/popup__close-icon.css);
 @import url(./__title/popup__title.css);
 @import url(./__input/popup__input.css);
-@import url(./__input-form/popup__input-form.css);
 @import url(./__save-button/popup__save-button.css);
 
 .popup {
-  display: none;
-  /* width: 100%; */
-  min-height: 100vh;
+  /* display: none; */
+  min-width: 100%;
   background-color: rgba(00, 00, 00, .5);
-  /* opacity: .5; */
   position: absolute;
   top: 0;
-  /* bottom: 0; */
-  left: 0;
-  right: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
