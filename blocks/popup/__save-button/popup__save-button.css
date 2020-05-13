@@ -11,3 +11,7 @@
   margin: 48px 0 36.51px;
   outline: none;
 }
+
+.popup__save-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}

@@ -4,7 +4,6 @@
 @import url(./__input/popup__input.css);
 @import url(./__save-button/popup__save-button.css);
 @import url(./__active/popup__active.css);
-@import url(./_opened/popup_opened.css);
 
 .popup {
   display: none;
@@ -13,7 +12,6 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  /* display: flex; */
   justify-content: center;
   align-items: center;
 }

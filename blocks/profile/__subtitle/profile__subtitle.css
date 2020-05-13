@@ -3,3 +3,12 @@
   font-size: 18px;
   line-height: 22px;
 }
+
+@media screen and (min-width: 300px) and (max-width: 767px) {
+  .profile__subtitle {
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 14px 0 0;
+  }
+}
