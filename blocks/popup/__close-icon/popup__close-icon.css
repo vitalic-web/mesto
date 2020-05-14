@@ -1,7 +1,7 @@
 .popup__close-icon {
   position: absolute;
-  top: 379px;
-  right: 384px;
+  top: -40px;
+  right: -40px;
   border: none;
   outline: none;
   background-image: url(../../../images/popup__close-icon.svg);
@@ -15,16 +15,9 @@
   opacity: 0.6;
 }
 
-@media screen and (min-width: 300px) and (max-width: 767px) {
+@media screen and (min-width: 300px) and (max-width: 619px) {
   .popup__close-icon {
-    top: 47px;
-    right: 15px;
-  }
-}
-
-@media screen and (min-width: 1920px) and (max-width: 2200px) {
-  .popup__close-icon {
-    top: 256px;
-    right: 696px;
+    top: -42px;
+    right: -4px;
   }
 }

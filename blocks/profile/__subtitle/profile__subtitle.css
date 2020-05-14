@@ -9,7 +9,7 @@
   text-overflow: ellipsis;
 }
 
-@media screen and (min-width: 300px) and (max-width: 767px) {
+@media screen and (min-width: 300px) and (max-width: 920px) {
   .profile__subtitle {
     width: 280px;
     max-width: 280px;

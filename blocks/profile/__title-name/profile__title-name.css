@@ -10,7 +10,7 @@
   text-overflow: ellipsis;
 }
 
-@media screen and (min-width: 300px) and (max-width: 767px) {
+@media screen and (min-width: 300px) and (max-width: 619px) {
   .profile__title-name {
     width: 201px;
     max-width: 201px;
@@ -18,5 +18,11 @@
     line-height: 2.07;
     margin: 10px 5px 0 0;
     height: 43px;
+  }
+}
+
+@media screen and (min-width: 620px) and (max-width: 920px) {
+  .profile__title-name {
+    margin-top: 10px;
   }
 }

@@ -3,10 +3,17 @@
   margin-bottom: 40px;
 }
 
-@media screen and (min-width: 300px) and (max-width: 767px) {
+@media screen and (min-width: 300px) and (max-width: 619px) {
   .header__logo {
     margin: 0 0 31.6px 27px;
     width: 104px;
     max-width: 104px;
+  }
+}
+
+@media screen and (min-width: 620px) and (max-width: 920px) {
+  .header__logo {
+    width: 142px;
+    max-width: 142px;
   }
 }
