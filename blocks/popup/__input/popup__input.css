@@ -4,11 +4,19 @@
   font-size: 14px;
   line-height: 17px;
   border-bottom: 1px solid rgba(00, 00, 00, .2);
-  width: calc(100% * 358/430);
+  width: 358px;
+  max-width: 358px;
   padding-bottom: 13.35px;
   margin: 0;
 }
 
 .popup__input:nth-child(2) {
   margin: 0 0 30px;
+}
+
+@media screen and (min-width: 300px) and (max-width: 767px) {
+  .popup__input {
+    width: 245px;
+    max-width: 245px;
+  }
 }

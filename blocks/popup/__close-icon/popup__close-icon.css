@@ -1,10 +1,10 @@
 .popup__close-icon {
   position: absolute;
-  top: 152px;
+  top: 379px;
   right: 384px;
   border: none;
   outline: none;
-  background-image: url(../../../images/popup__close-icon.png);
+  background-image: url(../../../images/popup__close-icon.svg);
   padding-bottom: 40px;
   width: 40px;
   background-position: center;
@@ -19,5 +19,12 @@
   .popup__close-icon {
     top: 47px;
     right: 15px;
+  }
+}
+
+@media screen and (min-width: 1920px) and (max-width: 2200px) {
+  .popup__close-icon {
+    top: 256px;
+    right: 696px;
   }
 }

@@ -3,9 +3,20 @@
 @import url(./__title/popup__title.css);
 @import url(./__input/popup__input.css);
 @import url(./__save-button/popup__save-button.css);
-@import url(./__active/popup__active.css);
+@import url(./_active/popup_active.css);
 
 .popup {
+  display: none;
+  min-width: 100%;
+  background-color: rgba(00, 00, 00, .5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .popup {
   display: none;
   min-width: 100%;
   background-color: rgba(00, 00, 00, .5);
@@ -14,4 +25,4 @@
   bottom: 0;
   justify-content: center;
   align-items: center;
-}
+} */

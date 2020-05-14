@@ -1,5 +1,6 @@
 .element__title-like {
-  width: 20.76px;
+  width: 21px;
+  max-width: 21px;
   height: 20.76px;
   border: none;
   outline: none;
@@ -8,4 +9,9 @@
   background-color: transparent;
   background-repeat: no-repeat;
   padding: 0;
+  margin-right: 18.24px;
+}
+
+.element__title-like:hover {
+  opacity: 0.6;
 }

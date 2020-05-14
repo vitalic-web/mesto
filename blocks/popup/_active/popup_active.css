@@ -1,10 +1,14 @@
-.popup__active {
+.popup.popup_active {
+  display: flex;
+}
+
+/* .popup__active {
   min-width: 100%;
   background-color: rgba(00, 00, 00, .5);
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */

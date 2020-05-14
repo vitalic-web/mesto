@@ -2,14 +2,16 @@
 
 .header {
   display: flex;
-  width: calc(100% * 882/1280);
+  width: 882px;
+  max-width: 882px;
   border-bottom: 1px solid rgba(84, 84, 84, .7);
   margin: 45px 0 36.25px;
 }
 
 @media screen and (min-width: 300px) and (max-width: 767px) {
   .header {
-    width: 100%;
+    width: 320px;
+    max-width: 320px;
     margin: 28px 0 36.25px;
   }
 }
