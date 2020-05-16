@@ -5,5 +5,3 @@ for (let likeActiveElement of likeActive) {
     likeActiveElement.classList.toggle('element__title-like_active');
   })
 }
-
-console.log(likeActive);
