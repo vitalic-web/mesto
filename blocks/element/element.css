@@ -3,8 +3,15 @@
 @import url(./__title-text/element__title-text.css);
 @import url(./__title-like/element__title-like.css);
 @import url(./__title-like/element__title-like_active/element__title-like_active.css);
+@import url(./__delete/element__delete.css);
 
 .element {
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  width: 282px;
+  max-width: 282px;
+  height: 361px;
+  overflow: hidden;
+  position: relative;
 }

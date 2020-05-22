@@ -6,12 +6,18 @@
 @import url(./_active/popup_active.css);
 
 .popup {
-  display: none;
+  /* display: none; */
   min-width: 100%;
   background-color: rgba(00, 00, 00, .5);
   position: fixed;
   top: 0;
   bottom: 0;
+  display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s, opacity 1s linear;
 }
