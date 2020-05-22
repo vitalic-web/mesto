@@ -43,23 +43,31 @@
       <section class="popup">
         <form class="popup__container">
           <h3 class="popup__title">Новое место</h3>
-          <input class="popup__input popup__input_name" type="text" placeholder = "Название">
-          <input class="popup__input popup__input_prof" type="text" placeholder = "Ссылка на картинку">
+          <input class="popup__input popup__input_name" type="text" placeholder="Название">
+          <input class="popup__input popup__input_prof" type="text" placeholder="Ссылка на картинку">
           <button class="popup__save-button" type="submit">Создать</button>
           <button class="popup__close-icon" type="button"></button>
         </form>
       </section>
 
-    <!-- добавляется popup_active   -->
-    <!-- <div class="popup"></div>
-    <div class="element">
-      <img class="element__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
-      <button class="element__delete" type="button"></button>
-      <div class="element__title">
-        <h2 class="element__title-text">тест</h2>
-        <button class="element__title-like" type="button"></button>
+      <!-- добавляется popup_active   -->
+      <!-- <div class="popup">
+        <div class="popup-photo">
+          <img class="popup-photo__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
+          <h2 class="popup-photo__text">test</h2>
+          <button class="popup-photo__close" type="button"></button>
+        </div>
       </div>
-    </div> -->
+      <div class="element">
+        <img class="element__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+          alt="">
+        <button class="element__delete" type="button"></button>
+        <div class="element__title">
+          <h2 class="element__title-text">test</h2>
+          <button class="element__title-like" type="button"></button>
+        </div>
+      </div> -->
+
 
       <section class="elements"></section>
 
@@ -68,19 +76,27 @@
     <footer class="footer">&copy; 2020 Mesto Russia</footer>
   </div>
 
-  <template id = "element-template">
-    <div class="popup"></div>
+  <template id="element-template">
     <div class="element">
-      <img class="element__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
+      <div class="popup">
+        <div class="popup-photo">
+          <img class="popup-photo__image"
+            src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
+          <h2 class="popup-photo__text">test</h2>
+          <button class="popup-photo__close" type="button"></button>
+        </div>
+      </div>
+      <img class="element__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+        alt="">
       <button class="element__delete" type="button"></button>
       <div class="element__title">
-        <h2 class="element__title-text"></h2>
+        <h2 class="element__title-text">test</h2>
         <button class="element__title-like" type="button"></button>
       </div>
     </div>
   </template>
 
-  <template id = "open-photo">
+  <!-- <template id = "open-photo">
     <div class="popup popup_active">
       <div class="popup-photo">
         <img class="popup-photo__image" src="" alt="">
@@ -88,10 +104,11 @@
         <button class="popup-photo__close" type="button"></button>
       </div>
     </div>
-  </template>
+  </template> -->
 
 
   <!-- <script src="scripts/script.js"></script> -->
   <script src="scriptTest.js"></script>
 </body>
+
 </html>

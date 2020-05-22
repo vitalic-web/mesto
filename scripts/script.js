@@ -137,6 +137,7 @@ function formSubmitHandlerPhoto(evt) {
     photoOpen.querySelector('.popup-photo__text').textContent = namePhotoInput.value;
     photoOpen.querySelector('.popup-photo__image').src = linkPhotoInput.value;
 
+
     photoOpen.querySelector('.popup-photo__close').addEventListener('click', function(evt){ //закрытие фотки по клику
       const eventPhotoClose = evt.target.closest('.popup');
       eventPhotoClose.remove();
