@@ -14,12 +14,8 @@ const visiblePopupPhoto = popup[1]; // окно попапа добавлени�
 const popupForm = popup[0].querySelector('.popup__container'); // окно попапа редактирования
 const popupFormPhoto = popup[1].querySelector('.popup__container'); // окно попапа добавления фотки
 const photoContainer = document.querySelector('.elements'); // контейнер всех фоток
-// const photoElements = document.querySelectorAll('.element'); // все элементы с фотками в массив
 const photoTemplate = document.querySelector('#element-template').content; // шаблон на добавление элементов
-const photoOpenTemplate = document.querySelector('#open-photo').content; //шаблон на открытие фотографии
 const content = document.querySelector('.content');
-
-// let photoElements = [];
 
 const initialCards = [
   {
@@ -67,17 +63,19 @@ for (let i = 0; i < initialCards.length; i++) {
     eventTargetDelete.remove();
   })
 
-  photoElement.querySelector('.element__image').addEventListener('click', function() { //увеличение фотки
+  photoElement.querySelector('.element__image').addEventListener('click', function(evt) { //увеличение фотки
+    const eventTargetOpen = evt.target.closest('.element');
+    const photo = eventTargetOpen.querySelector('.popup');
 
-    const photoOpen = photoOpenTemplate.cloneNode(true);
-    photoOpen.querySelector('.popup-photo__text').textContent = initialCards[i].name;
-    photoOpen.querySelector('.popup-photo__image').src = initialCards[i].link;
+    photo.querySelector('.popup-photo__text').textContent = initialCards[i].name;
+    photo.querySelector('.popup-photo__image').src = initialCards[i].link;
 
-    photoOpen.querySelector('.popup-photo__close').addEventListener('click', function(evt){ //закрытие фотки по клику
-      const eventPhotoClose = evt.target.closest('.popup');
-      eventPhotoClose.remove();
-    })
-    content.append(photoOpen);
+    photo.classList.toggle('popup_active');
+  })
+
+  photoElement.querySelector('.popup-photo__close').addEventListener('click', function(evt){ //закрытие фотки по клику
+    const eventPhotoClose = evt.target.closest('.popup');
+    eventPhotoClose.classList.toggle('popup_active');
   })
 
   photoContainer.append(photoElement);
@@ -131,23 +129,22 @@ function formSubmitHandlerPhoto(evt) {
     eventTargetDelete.remove();
   })
 
-  photoElement.querySelector('.element__image').addEventListener('click', function() { //увеличение фотки
+  photoElement.querySelector('.element__image').addEventListener('click', function(evt) { //увеличение фотки
+    const eventTargetOpen = evt.target.closest('.element');
+    const photo = eventTargetOpen.querySelector('.popup');
 
-    const photoOpen = photoOpenTemplate.cloneNode(true);
-    photoOpen.querySelector('.popup-photo__text').textContent = namePhotoInput.value;
-    photoOpen.querySelector('.popup-photo__image').src = linkPhotoInput.value;
+    photo.querySelector('.popup-photo__text').textContent = namePhotoInput.value;
+    photo.querySelector('.popup-photo__image').src = linkPhotoInput.value;
 
+    photo.classList.toggle('popup_active');
+  })
 
-    photoOpen.querySelector('.popup-photo__close').addEventListener('click', function(evt){ //закрытие фотки по клику
-      const eventPhotoClose = evt.target.closest('.popup');
-      eventPhotoClose.remove();
-    })
-    content.append(photoOpen);
+  photoElement.querySelector('.popup-photo__close').addEventListener('click', function(evt){ //закрытие фотки по клику
+    const eventPhotoClose = evt.target.closest('.popup');
+    eventPhotoClose.classList.toggle('popup_active');
   })
 
   photoContainer.prepend(photoElement);
-
-
 
   openPopupPhoto();
 
