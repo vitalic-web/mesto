@@ -49,6 +49,7 @@ const initialCards = [
 initialCards.forEach(function (item) {
   const photoElement = cloneTemplate(photoTemplate);
   const elementImage = photoElement.querySelector('.element__image');
+  const popupElement = photoElement.querySelector('.popup');
 
   photoElement.querySelector('.element__title-text').textContent = item.name;
   elementImage.src = item.link;
@@ -63,18 +64,16 @@ initialCards.forEach(function (item) {
     eventTargetDelete.remove();
   })
 
-  elementImage.addEventListener('click', function(evt) { //увеличение фотки
-    const eventTargetOpen = evt.target.closest('.element').querySelector('.popup');
+  elementImage.addEventListener('click', function() { //увеличение фотки
 
-    eventTargetOpen.querySelector('.popup-photo__text').textContent = item.name;
-    eventTargetOpen.querySelector('.popup-photo__image').src = item.link;
+    popupElement.querySelector('.popup-photo__text').textContent = item.name;
+    popupElement.querySelector('.popup-photo__image').src = item.link;
 
-    openClose(eventTargetOpen);
+    openClose(popupElement);
   })
 
-  photoElement.querySelector('.popup-photo__close').addEventListener('click', function(evt){ //закрытие фотки по клику
-    const eventPhotoClose = evt.target.closest('.popup');
-    openClose(eventPhotoClose);
+  photoElement.querySelector('.popup-photo__close').addEventListener('click', function(){ //закрытие фотки по клику
+    openClose(popupElement);
   })
 
   photoContainer.append(photoElement);
@@ -126,6 +125,7 @@ function formSubmitHandlerPhoto(evt) {
 
   const photoElement = cloneTemplate(photoTemplate);
   const elementImage = photoElement.querySelector('.element__image');
+  const popupElement = photoElement.querySelector('.popup');
 
   photoElement.querySelector('.element__title-text').textContent = namePhotoInput.value;
   elementImage.src = linkPhotoInput.value;
@@ -140,18 +140,16 @@ function formSubmitHandlerPhoto(evt) {
     eventTargetDelete.remove();
   })
 
-  elementImage.addEventListener('click', function(evt) { //увеличение фотки
-    const eventTargetOpen = evt.target.closest('.element').querySelector('.popup');
+  elementImage.addEventListener('click', function() { //увеличение фотки
 
-    eventTargetOpen.querySelector('.popup-photo__text').textContent = namePhotoInput.value;
-    eventTargetOpen.querySelector('.popup-photo__image').src = linkPhotoInput.value;
+    popupElement.querySelector('.popup-photo__text').textContent = namePhotoInput.value;
+    popupElement.querySelector('.popup-photo__image').src = linkPhotoInput.value;
 
-    openClose(eventTargetOpen);
+    openClose(popupElement);
   })
 
-  photoElement.querySelector('.popup-photo__close').addEventListener('click', function(evt){ //закрытие фотки по клику
-    const eventPhotoClose = evt.target.closest('.popup');
-    openClose(eventPhotoClose);
+  photoElement.querySelector('.popup-photo__close').addEventListener('click', function(){ //закрытие фотки по клику
+    openClose(popupElement);
   })
 
   photoContainer.prepend(photoElement);
