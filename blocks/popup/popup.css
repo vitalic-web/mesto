@@ -4,6 +4,8 @@
 @import url(./__input/popup__input.css);
 @import url(./__save-button/popup__save-button.css);
 @import url(./_active/popup_active.css);
+@import url(./_edit_profile/popup_edit_profile.css);
+@import url(./_add_photo/popup_add_photo.css);
 
 .popup {
   min-width: 100%;
