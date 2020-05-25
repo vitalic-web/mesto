@@ -6,6 +6,7 @@
 @import url(./_active/popup_active.css);
 @import url(./_edit_profile/popup_edit_profile.css);
 @import url(./_add_photo/popup_add_photo.css);
+@import url(./_open_photo/popup_open_photo.css);
 
 .popup {
   min-width: 100%;

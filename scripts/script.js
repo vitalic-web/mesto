@@ -1,5 +1,6 @@
 const popupEditProfile = document.querySelector('.popup_edit_profile'); // попап редактирования профиля
 const popupAddPhoto = document.querySelector('.popup_add_photo'); // попап добавления фотки
+const popupOpenPhoto = document.querySelector('.popup_open_photo'); // попап открытия фотки
 const profileEditButton = document.querySelector('.profile__title-button'); // кнопка редактировать профиль
 const profileAddPhotoButton = document.querySelector('.profile__add-button'); // кнопка добавить фото
 const popupCloseButton = popupEditProfile.querySelector('.popup__close-icon'); //кнопка закрыть окно редактирования профиля
@@ -42,56 +43,21 @@ const initialCards = [
   }
 ]
 
-// цикл на добавление фоток из массива
-// добавление/удаление лайков
-// удаление фокти нажатием на значок "удалить"
-
-initialCards.forEach(function (item) {
-  const photoElement = cloneTemplate(photoTemplate);
-  const elementImage = photoElement.querySelector('.element__image');
-  const popupElement = photoElement.querySelector('.popup');
-
-  photoElement.querySelector('.element__title-text').textContent = item.name;
-  elementImage.src = item.link;
-
-  photoElement.querySelector('.element__title-like').addEventListener('click', function(evt) {
-    const eventTargetLike = evt.target; //выбор элемента, на который кликнули
-    eventTargetLike.classList.toggle('element__title-like_active');
-  })
-
-  photoElement.querySelector('.element__delete').addEventListener('click', function(evt) {
-    const eventTargetDelete = evt.target.closest('.element'); //выбор элемента, на который кликнули и ближайшего к нему родителя
-    eventTargetDelete.remove();
-  })
-
-  elementImage.addEventListener('click', function() { //увеличение фотки
-
-    popupElement.querySelector('.popup-photo__text').textContent = item.name;
-    popupElement.querySelector('.popup-photo__image').src = item.link;
-
-    openClose(popupElement);
-  })
-
-  photoElement.querySelector('.popup-photo__close').addEventListener('click', function(){ //закрытие фотки по клику
-    openClose(popupElement);
-  })
-
-  photoContainer.append(photoElement);
-})
-
-// функция на создание элемента из шаблона
-function cloneTemplate(template) {
-  return template.cloneNode(true);
-}
-
-// функция открытия/закрытия попап
-function openClose(element) {
+// функция переключения попап
+function togglePopup(element) {
   element.classList.toggle('popup_active');
 }
 
-// функция открытия/закрытия попапа редактирования профиля
-function openPopup() {
-  openClose(popupEditProfile);
+// функция закрытия попапа
+function closePopup(item) {
+  item.querySelector('.popup__close-icon').addEventListener('click', function(){
+    togglePopup(item);
+  })
+}
+
+// функция открытия попапа редактирования профиля с заполнением полей информацией со траницы
+function openEditProfile() {
+  togglePopup(popupEditProfile);
 
   if (popupEditProfile.classList.contains('popup_active')) {
     nameInput.value = nameOutput.textContent;
@@ -99,75 +65,83 @@ function openPopup() {
   }
 }
 
-//создаем функцию на открытие/закрытие попапа добавления фотки
-//условие if здесь не нужно, т.к. в поле ввода указывается placeholder
-function openPopupPhoto() {
-  openClose(popupAddPhoto);
-}
-
-// создаем функцию для отправки формы редактирования профиля на страницу
-// добавляем функцию openPopup для закрытия окна псоле ввода данных
+// функция для отправки формы редактирования профиля на страницу
 function formSubmitHandler(evt) {
   evt.preventDefault();
 
   nameOutput.textContent = nameInput.value;
   profOutput.textContent = profInput.value;
 
-  openPopup();
+  openEditProfile();
 }
 
-// создаем функцию для добавления фотки на страницу
-// добавляем функцию openPopup для закрытия окна после ввода данных
+// функция на добавление фоток из шаблона
 // добавление/удаление лайков
-// удаление фокти нажатием на значок "удалить"
-function formSubmitHandlerPhoto(evt) {
-  evt.preventDefault();
+// удаление фотки нажатием на значок "удалить"
+// увеличение фотки по клику на нее
+function addElement(element, name, link) {
+  const elementImage = element.querySelector('.element__image');
 
-  const photoElement = cloneTemplate(photoTemplate);
-  const elementImage = photoElement.querySelector('.element__image');
-  const popupElement = photoElement.querySelector('.popup');
+  element.querySelector('.element__title-text').textContent = name;
+  elementImage.src = link;
+  elementImage.alt = name;
 
-  photoElement.querySelector('.element__title-text').textContent = namePhotoInput.value;
-  elementImage.src = linkPhotoInput.value;
-
-  photoElement.querySelector('.element__title-like').addEventListener('click', function(evt) {
+  element.querySelector('.element__title-like').addEventListener('click', function(evt) { // лайки
     const eventTargetLike = evt.target; //выбор элемента, на который кликнули
     eventTargetLike.classList.toggle('element__title-like_active');
   })
 
-  photoElement.querySelector('.element__delete').addEventListener('click', function(evt) {
+  element.querySelector('.element__delete').addEventListener('click', function(evt) { // удаление фотки
     const eventTargetDelete = evt.target.closest('.element'); //выбор элемента, на который кликнули и ближайшего к нему родителя
     eventTargetDelete.remove();
   })
 
   elementImage.addEventListener('click', function() { //увеличение фотки
 
-    popupElement.querySelector('.popup-photo__text').textContent = namePhotoInput.value;
-    popupElement.querySelector('.popup-photo__image').src = linkPhotoInput.value;
+    popupOpenPhoto.querySelector('.popup-photo__text').textContent = name;
+    popupOpenPhoto.querySelector('.popup-photo__image').src = link;
 
-    openClose(popupElement);
+    togglePopup(popupOpenPhoto);
   })
-
-  photoElement.querySelector('.popup-photo__close').addEventListener('click', function(){ //закрытие фотки по клику
-    openClose(popupElement);
-  })
-
-  photoContainer.prepend(photoElement);
-
-  openPopupPhoto();
-
 }
 
-// добавляем событие по клику на открытие/закрытие попапа редактирования профиля
-profileEditButton.addEventListener("click", openPopup);
-popupCloseButton.addEventListener("click", openPopup);
+// цикл на добавление на страницу фоток из массива
+initialCards.forEach(function (item) {
+  const photoElement = photoTemplate.cloneNode(true);
+  const photoName = item.name;
+  const photoLink = item.link;
 
-// добавляем событие по клику на открытие/закрытие попапа добавления фотки
-profileAddPhotoButton.addEventListener("click", openPopupPhoto);
-popupCloseButtonPhoto.addEventListener("click", openPopupPhoto);
+  addElement(photoElement, photoName, photoLink);
+  photoContainer.append(photoElement);
+})
 
-// добавляем событие при клике на "сохранить" в профиле
+// функция для добавления фотки на страницу
+function formSubmitHandlerPhoto(evt) {
+  evt.preventDefault();
+
+  const addedPhotoElement = photoTemplate.cloneNode(true);
+  const addedPhotoName = namePhotoInput.value;
+  const addedPhotoLink = linkPhotoInput.value;
+
+  addElement(addedPhotoElement, addedPhotoName, addedPhotoLink);
+  photoContainer.prepend(addedPhotoElement);
+  togglePopup(popupAddPhoto);
+}
+
+closePopup(popupEditProfile); // закрытие окна редактирования профиля
+closePopup(popupAddPhoto); // закрытие окна добавления фотки
+closePopup(popupOpenPhoto); // закрытие окна увеличенной фотки
+
+// событие по клику на открытие попапа редактирования профиля
+profileEditButton.addEventListener("click", openEditProfile);
+
+// событие по клику на открытие попапа добавления фотки
+profileAddPhotoButton.addEventListener("click", function() {
+  togglePopup(popupAddPhoto);
+});
+
+// событие при клике на "сохранить" в профиле
 popupForm.addEventListener('submit', formSubmitHandler);
 
-// добавляем событие при клике на "создать" в дабавлении фотки
+// событие при клике на "создать" в дабавлении фотки
 popupFormPhoto.addEventListener('submit', formSubmitHandlerPhoto);
