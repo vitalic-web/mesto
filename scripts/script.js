@@ -55,13 +55,16 @@ function closePopup(item) {
   })
 }
 
-// функция открытия попапа редактирования профиля с заполнением полей информацией со траницы
+// функция открытия попапа редактирования профиля с заполнением полей информацией со страницы
 function openEditProfile() {
   togglePopup(popupEditProfile);
+  const inputArr = Array.from(popupEditProfile.querySelectorAll('.popup__input'));
+  const saveButton = popupEditProfile.querySelector('.popup__save-button');
 
   if (popupEditProfile.classList.contains('popup_active')) {
     nameInput.value = nameOutput.textContent;
     profInput.value = profOutput.textContent;
+    toggleButtonState(inputArr, saveButton, validationSetup.inactiveButtonClass, 'popup__save-button_inactive');
   }
 }
 
