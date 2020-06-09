@@ -33,8 +33,13 @@
       <section class="popup popup_edit_profile">
         <form class="popup__container">
           <h3 class="popup__title">Редактировать профиль</h3>
-          <input class="popup__input popup__input_name" type="text">
-          <input class="popup__input popup__input_prof" type="text">
+
+          <input class="popup__input popup__input_name" type="text" required pattern="[А-ЯЁа-яёA-Za-z -]{1,}" minlength="2" maxlength="40" id="name-input">
+          <span class="popup__input-error-message" id="name-input-error"></span>
+
+          <input class="popup__input popup__input_prof" type="text" required minlength="2" maxlength="200" id="prof-input">
+          <span class="popup__input-error-message" id="prof-input-error"></span>
+
           <button class="popup__save-button" type="submit">Сохранить</button>
           <button class="popup__close-icon" type="button"></button>
         </form>
@@ -43,8 +48,13 @@
       <section class="popup popup_add_photo">
         <form class="popup__container">
           <h3 class="popup__title">Новое место</h3>
-          <input class="popup__input popup__input_name" type="text" placeholder="Название">
-          <input class="popup__input popup__input_prof" type="text" placeholder="Ссылка на картинку">
+
+          <input class="popup__input popup__input_name" type="text" placeholder="Название" required minlength="1" maxlength="30" id="name-input">
+          <span class="popup__input-error-message" id="name-input-error"></span>
+
+          <input class="popup__input popup__input_prof" type="url" placeholder="Ссылка на картинку" required id="prof-input">
+          <span class="popup__input-error-message" id="prof-input-error"></span>
+
           <button class="popup__save-button" type="submit">Создать</button>
           <button class="popup__close-icon" type="button"></button>
         </form>
@@ -79,6 +89,7 @@
   </template>
 
   <script src="scripts/script.js"></script>
+  <script src="scripts/validate.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,16 @@
+.popup__input-error-message {
+  font-size: 12px;
+  line-height: 15px;
+  color: red;
+  width: 358px;
+  max-width: 358px;
+  position: absolute;
+}
+
+#name-input-error {
+  top: 148px;
+}
+
+#prof-input-error {
+  top: 209px;
+}

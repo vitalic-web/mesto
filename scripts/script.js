@@ -66,7 +66,7 @@ function openEditProfile() {
 }
 
 // функция для отправки формы редактирования профиля на страницу
-function formSubmitHandler(evt) {
+function formEditProfile(evt) {
   evt.preventDefault();
 
   nameOutput.textContent = nameInput.value;
@@ -116,7 +116,7 @@ initialCards.forEach(function (item) {
 })
 
 // функция для добавления фотки на страницу
-function formSubmitHandlerPhoto(evt) {
+function formAddPhoto(evt) {
   evt.preventDefault();
 
   const addedPhotoElement = photoTemplate.cloneNode(true);
@@ -138,10 +138,12 @@ profileEditButton.addEventListener("click", openEditProfile);
 // событие по клику на открытие попапа добавления фотки
 profileAddPhotoButton.addEventListener("click", function() {
   togglePopup(popupAddPhoto);
+  namePhotoInput.value = '';
+  linkPhotoInput.value = '';
 });
 
 // событие при клике на "сохранить" в профиле
-popupForm.addEventListener('submit', formSubmitHandler);
+popupForm.addEventListener('submit', formEditProfile);
 
 // событие при клике на "создать" в дабавлении фотки
-popupFormPhoto.addEventListener('submit', formSubmitHandlerPhoto);
+popupFormPhoto.addEventListener('submit', formAddPhoto);

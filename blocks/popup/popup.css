@@ -9,6 +9,9 @@
 @import url(./_edit_profile/popup_edit_profile.css);
 @import url(./_add_photo/popup_add_photo.css);
 @import url(./_open_photo/popup_open_photo.css);
+@import url(./__save-button/_inactive/popup__save-button_inactive.css);
+@import url(./__input/_error/popup__input_error.css);
+@import url(./__input-error-message/popup__input-error-message.css);
 
 .popup {
   min-width: 100%;
