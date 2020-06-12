@@ -5,10 +5,10 @@ const profileEditButton = document.querySelector('.profile__title-button'); // �
 const profileAddPhotoButton = document.querySelector('.profile__add-button'); // кнопка добавить фото
 const popupCloseButton = popupEditProfile.querySelector('.popup__close-icon'); //кнопка закрыть окно редактирования профиля
 const popupCloseButtonPhoto = popupAddPhoto.querySelector('.popup__close-icon'); //кнопка закрыть окно добавления фотки
-const nameInput = popupEditProfile.querySelector('.popup__input_name'); // поле ввода имени
-const profInput = popupEditProfile.querySelector('.popup__input_prof'); // поле ввода профессии
-const namePhotoInput = popupAddPhoto.querySelector('.popup__input_name'); // поле ввода названия фотки
-const linkPhotoInput = popupAddPhoto.querySelector('.popup__input_prof'); // поле ввода ссылки на фотку
+const nameInput = popupEditProfile.querySelector('.popup__input_filed_name'); // поле ввода имени
+const profInput = popupEditProfile.querySelector('.popup__input_filed_prof'); // поле ввода профессии
+const namePhotoInput = popupAddPhoto.querySelector('.popup__input_filed_name'); // поле ввода названия фотки
+const linkPhotoInput = popupAddPhoto.querySelector('.popup__input_filed_prof'); // поле ввода ссылки на фотку
 const nameOutput = document.querySelector('.profile__title-name'); // имя на странице
 const profOutput = document.querySelector('.profile__subtitle'); // профессия на странице
 const popupForm = popupEditProfile.querySelector('.popup__container'); // окно попапа редактирования
@@ -43,6 +43,14 @@ const initialCards = [
   }
 ]
 
+const validationSetup = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_inactive',
+  inputErrorClass: 'popup__input_error',
+}
+
 // функция переключения попап
 function togglePopup(element) {
   element.classList.toggle('popup_active');
@@ -58,13 +66,13 @@ function closePopup(item) {
 // функция открытия попапа редактирования профиля с заполнением полей информацией со страницы
 function openEditProfile() {
   togglePopup(popupEditProfile);
-  const inputArr = Array.from(popupEditProfile.querySelectorAll('.popup__input'));
+  const inputList = Array.from(popupEditProfile.querySelectorAll('.popup__input'));
   const saveButton = popupEditProfile.querySelector('.popup__save-button');
 
   if (popupEditProfile.classList.contains('popup_active')) {
     nameInput.value = nameOutput.textContent;
     profInput.value = profOutput.textContent;
-    toggleButtonState(inputArr, saveButton, validationSetup.inactiveButtonClass, 'popup__save-button_inactive');
+    toggleButtonState(inputList, saveButton, validationSetup.inactiveButtonClass, 'popup__save-button_inactive');
   }
 }
 
@@ -150,3 +158,17 @@ popupForm.addEventListener('submit', formEditProfile);
 
 // событие при клике на "создать" в дабавлении фотки
 popupFormPhoto.addEventListener('submit', formAddPhoto);
+
+// закрытие попап нажатием на оверлей
+document.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup_active')) {
+    togglePopup(document.querySelector('.popup_active'));
+  }
+})
+
+// закрытие попап нажатием клавиши Escape
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === "Escape") {
+    togglePopup(document.querySelector('.popup_active'));
+  }
+})

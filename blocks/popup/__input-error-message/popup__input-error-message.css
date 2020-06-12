@@ -5,12 +5,9 @@
   width: 358px;
   max-width: 358px;
   position: absolute;
-}
-
-#name-input-error {
   top: 148px;
 }
 
-#prof-input-error {
+.popup__input-error-message:nth-of-type(2) {
   top: 209px;
 }

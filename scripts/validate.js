@@ -69,21 +69,6 @@ const enableValidation = (options) => {
   })
 }
 
-// закрытие попап нажатием на оверлей
-document.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup_active')) {
-    togglePopup(document.querySelector('.popup_active'));
-  }
-})
-
-// закрытие попап нажатием клавиши Escape
-document.addEventListener('keydown', (evt) => {
-  console.log(evt);
-  if (evt.key === "Escape") {
-    togglePopup(document.querySelector('.popup_active'));
-  }
-})
-
 // очистка ошибки при открытии попап
 const clearError = () => {
   const profile = document.querySelector('.profile');
@@ -93,14 +78,17 @@ const clearError = () => {
   const popupPhoto = document.querySelector('.popup_add_photo');
 
   profileButton.addEventListener('click', () => {
-    hideInputError(popupProfile, popupProfile.querySelector('.popup__input_name'), 'popup__input_error');
-    hideInputError(popupProfile, popupProfile.querySelector('.popup__input_prof'), 'popup__input_error');
+    hideInputError(popupProfile, popupProfile.querySelector('.popup__input_filed_name'), 'popup__input_error');
+    hideInputError(popupProfile, popupProfile.querySelector('.popup__input_filed_prof'), 'popup__input_error');
   })
 
   photoButton.addEventListener('click', () => {
-    hideInputError(popupPhoto, popupPhoto.querySelector('.popup__input_name'), 'popup__input_error');
-    hideInputError(popupPhoto, popupPhoto.querySelector('.popup__input_prof'), 'popup__input_error');
+    hideInputError(popupPhoto, popupPhoto.querySelector('.popup__input_filed_name'), 'popup__input_error');
+    hideInputError(popupPhoto, popupPhoto.querySelector('.popup__input_filed_prof'), 'popup__input_error');
   })
 }
 
 clearError();
+
+// включение валидности
+enableValidation(validationSetup);
