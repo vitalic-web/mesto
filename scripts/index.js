@@ -1,10 +1,11 @@
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+
 const popupEditProfile = document.querySelector('.popup_edit_profile'); // попап редактирования профиля
 const popupAddPhoto = document.querySelector('.popup_add_photo'); // попап добавления фотки
 const popupOpenPhoto = document.querySelector('.popup_open_photo'); // попап открытия фотки
 const profileEditButton = document.querySelector('.profile__title-button'); // кнопка редактировать профиль
 const profileAddPhotoButton = document.querySelector('.profile__add-button'); // кнопка добавить фото
-const popupCloseButton = popupEditProfile.querySelector('.popup__close-icon'); //кнопка закрыть окно редактирования профиля
-const popupCloseButtonPhoto = popupAddPhoto.querySelector('.popup__close-icon'); //кнопка закрыть окно добавления фотки
 const nameInput = popupEditProfile.querySelector('.popup__input_filed_name'); // поле ввода имени
 const profInput = popupEditProfile.querySelector('.popup__input_filed_prof'); // поле ввода профессии
 const namePhotoInput = popupAddPhoto.querySelector('.popup__input_filed_name'); // поле ввода названия фотки
@@ -14,7 +15,6 @@ const profOutput = document.querySelector('.profile__subtitle'); // профес
 const popupForm = popupEditProfile.querySelector('.popup__container'); // окно попапа редактирования
 const popupFormPhoto = popupAddPhoto.querySelector('.popup__container'); // окно попапа добавления фотки
 const photoContainer = document.querySelector('.elements'); // контейнер всех фоток
-const photoTemplate = document.querySelector('#element-template').content; // шаблон на добавление элементов
 
 const initialCards = [
   {
@@ -51,6 +51,9 @@ const validationSetup = {
   inputErrorClass: 'popup__input_error',
 }
 
+const validationPopupAddPhoto = new FormValidator(popupAddPhoto, validationSetup);
+const validationPopupEditProfile = new FormValidator(popupEditProfile, validationSetup);
+
 // функция переключения попап
 function togglePopup(element) {
   element.classList.toggle('popup_active');
@@ -66,13 +69,12 @@ function closePopup(item) {
 // функция открытия попапа редактирования профиля с заполнением полей информацией со страницы
 function openEditProfile() {
   togglePopup(popupEditProfile);
-  const inputList = Array.from(popupEditProfile.querySelectorAll('.popup__input'));
-  const saveButton = popupEditProfile.querySelector('.popup__save-button');
 
   if (popupEditProfile.classList.contains('popup_active')) {
     nameInput.value = nameOutput.textContent;
     profInput.value = profOutput.textContent;
-    toggleButtonState(inputList, saveButton, validationSetup.inactiveButtonClass, 'popup__save-button_inactive');
+    validationPopupEditProfile.clearError(nameInput);
+    validationPopupEditProfile.clearError(profInput);
   }
 }
 
@@ -86,56 +88,21 @@ function formEditProfile(evt) {
   openEditProfile();
 }
 
-// функция на добавление фоток из шаблона
-// добавление/удаление лайков
-// удаление фотки нажатием на значок "удалить"
-// увеличение фотки по клику на нее
-function addElement(element, name, link) {
-  const elementImage = element.querySelector('.element__image');
-
-  element.querySelector('.element__title-text').textContent = name;
-  elementImage.src = link;
-  elementImage.alt = name;
-
-  element.querySelector('.element__title-like').addEventListener('click', function(evt) { // лайки
-    const eventTargetLike = evt.target; //выбор элемента, на который кликнули
-    eventTargetLike.classList.toggle('element__title-like_active');
-  })
-
-  element.querySelector('.element__delete').addEventListener('click', function(evt) { // удаление фотки
-    const eventTargetDelete = evt.target.closest('.element'); //выбор элемента, на который кликнули и ближайшего к нему родителя
-    eventTargetDelete.remove();
-  })
-
-  elementImage.addEventListener('click', function() { //увеличение фотки
-
-    popupOpenPhoto.querySelector('.popup-photo__text').textContent = name;
-    popupOpenPhoto.querySelector('.popup-photo__image').src = link;
-
-    togglePopup(popupOpenPhoto);
-  })
-}
-
 // цикл на добавление на страницу фоток из массива
 initialCards.forEach(function (item) {
-  const photoElement = photoTemplate.cloneNode(true);
-  const photoName = item.name;
-  const photoLink = item.link;
+  const card = new Card('#element-template', item.name, item.link);
+  const cardElement = card.generateCard();
 
-  addElement(photoElement, photoName, photoLink);
-  photoContainer.append(photoElement);
+  photoContainer.append(cardElement);
 })
 
-// функция для добавления фотки на страницу
 function formAddPhoto(evt) {
   evt.preventDefault();
 
-  const addedPhotoElement = photoTemplate.cloneNode(true);
-  const addedPhotoName = namePhotoInput.value;
-  const addedPhotoLink = linkPhotoInput.value;
+  const card = new Card('#element-template', namePhotoInput.value, linkPhotoInput.value);
+  const cardElement = card.generateCard();
 
-  addElement(addedPhotoElement, addedPhotoName, addedPhotoLink);
-  photoContainer.prepend(addedPhotoElement);
+  photoContainer.prepend(cardElement);
   togglePopup(popupAddPhoto);
 }
 
@@ -151,6 +118,9 @@ profileAddPhotoButton.addEventListener("click", function() {
   togglePopup(popupAddPhoto);
   namePhotoInput.value = '';
   linkPhotoInput.value = '';
+  validationPopupAddPhoto.clearError(namePhotoInput);
+  validationPopupAddPhoto.clearError(linkPhotoInput);
+
 });
 
 // событие при клике на "сохранить" в профиле
@@ -172,3 +142,15 @@ document.addEventListener('keydown', (evt) => {
     togglePopup(document.querySelector('.popup_active'));
   }
 })
+
+// добавление валидации на всю страницу
+const formList = Array.from(document.querySelectorAll(validationSetup.formSelector));
+
+formList.forEach((formElement) => {
+  formElement.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+  });
+
+  const popupForm = new FormValidator(formElement, validationSetup);
+  popupForm.enableValidation();
+  })
