@@ -9,10 +9,12 @@
   background-image: url(../../../images/profile__add-button-plus.svg);
   background-repeat: no-repeat;
   background-position: center;
+  outline: none;
 }
 
 .profile__add-button:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 300px) and (max-width: 619px) {
