@@ -1,10 +1,9 @@
-import {popupOpenPhoto} from './index.js';
-
 export class Card {
-  constructor(template, name, link) {
+  constructor(template, name, link, {handleCardClick}) {
     this._template = template;
     this._name = name;
     this._link = link;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() { // создание пустой карточки из шаблона
@@ -21,9 +20,10 @@ export class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
     const imageElement = this._element.querySelector('.element__image');
+    const textElement = this._element.querySelector('.element__title-text');
 
     imageElement.src = this._link;
-    this._element.querySelector('.element__title-text').textContent = this._name;
+    textElement.textContent = this._name;
     imageElement.alt = this._name;
 
     return this._element;
@@ -39,7 +39,7 @@ export class Card {
     })
 
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._openPhoto();
+      this._handleCardClick();
     })
   }
 
@@ -50,11 +50,5 @@ export class Card {
   _deleteElement() { // удаление карточки
     this._element.remove();
     this._element = null;
-  }
-
-  _openPhoto() { // заполнение данными открытой фотографии, но без фактического открытия
-    popupOpenPhoto.querySelector('.popup-photo__text').textContent = this._name;
-    popupOpenPhoto.querySelector('.popup-photo__image').src = this._link;
-    popupOpenPhoto.querySelector('.popup-photo__image').alt = this._name;
   }
 }
