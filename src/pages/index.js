@@ -25,7 +25,7 @@ const validationPopupAddPhoto = new FormValidator(popupAddPhoto, validationSetup
 const validationPopupEditProfile = new FormValidator(popupEditProfile, validationSetup);
 
 // экземпляр класса для открытия изображения в полную величину
-const cardImage = new PopupWithImage('.popup_open_photo');
+const cardImage = new PopupWithImage('.popup_open_photo', '.popup-photo__text', '.popup-photo__image');
 
 // выгрузка карточек из массива на страницу
 const cardList = new Section({
