@@ -15,6 +15,9 @@ export class UserInfo {
 
   setUserInfo(inputList) {
     this._userName.textContent = inputList.name;
-    this._userProf.textContent = inputList.prof;
+    this._userProf.textContent = inputList.about; //about
+
+    // this._userName.textContent = inputList.name;
+    // this._userProf.textContent = inputList.prof;
   }
 }

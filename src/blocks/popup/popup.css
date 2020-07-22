@@ -8,6 +8,9 @@
 @import url(./__save-button/_inactive/popup__save-button_inactive.css);
 @import url(./__input/_error/popup__input_error.css);
 @import url(./__input-error-message/popup__input-error-message.css);
+@import url(./__title/_delete/popup__title_delete.css);
+@import url(./__save-button/_delete/popup__save-button_delete.css);
+@import url(./__input/_filed_avatar-link/popup__input_filed_avatar-link.css);
 
 .popup {
   min-width: 100%;

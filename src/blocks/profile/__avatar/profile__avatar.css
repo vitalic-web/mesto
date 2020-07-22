@@ -3,4 +3,6 @@
   width: 120px;
   max-width: 120px;
   height: 120px;
+  object-fit: cover;
+  z-index: 0;
 }

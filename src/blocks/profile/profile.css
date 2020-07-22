@@ -6,6 +6,7 @@
 @import url(./__title-name/profile__title-name.css);
 @import url(./__title/profile__title.css);
 @import url(./__author/profile__author.css);
+@import url(./__avatar-editor/profile__avatar-editor.css);
 
 .profile {
   display: flex;

@@ -8,33 +8,10 @@ export const namePhotoInput = popupAddPhoto.querySelector('.popup__input_filed_n
 export const linkPhotoInput = popupAddPhoto.querySelector('.popup__input_filed_prof'); // поле ввода ссылки на фото
 export const photoContainer = document.querySelector('.elements'); // контейнер всех фото
 export const templateSelector = '#element-template'; // селектор шаблона
-
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]
+export const profileAvatarEditor = document.querySelector('.profile__avatar-editor'); // кнопка редактирования аватара
+export const popupEditAvatar = document.querySelector('.popup_edit_avatar'); // попап редактирования аватара
+export const avatarLinkInput = popupEditAvatar.querySelector('.popup__input_filed_avatar-link') // поле ввода ссылки на аватар
+export const avatarImage = document.querySelector('.profile__avatar'); // изображение аватара
 
 export const validationSetup = {
   formSelector: '.popup__container',

@@ -14,7 +14,6 @@ export class PopupWithForm extends Popup {
     this.inputList.forEach((input) => {
       this.formValues[input.name] = input.value;
     });
-
     return this.formValues;
   }
 
@@ -33,5 +32,9 @@ export class PopupWithForm extends Popup {
     super.close();
 
     this._popupForm.querySelector('.popup__container').reset();
+  }
+
+  saveUX(text) {
+    this._submitButton.textContent = text;
   }
 }

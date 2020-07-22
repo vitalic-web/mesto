@@ -32,6 +32,7 @@ export class Popup {
 
   setEventListeners() {
     this._closeIcon.addEventListener('click', () => {
+      console.log('close-icon')
       this.close();
     })
   }
