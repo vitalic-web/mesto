@@ -1,12 +1,14 @@
 export class Card {
-  constructor(template, name, link, likes, {handleCardClick, handleLikeOn, handleLikeOff}) {
+  constructor(template, cardElement, {handleCardClick, handleLikeOn, handleLikeOff, errorPopupOpen, deleteCard}) {
     this._template = template;
-    this._name = name;
-    this._link = link;
-    this._likes = likes.length;
+    this._name = cardElement.name;
+    this._link = cardElement.link;
+    this._likes = cardElement.likes.length;
     this._handleCardClick = handleCardClick;
     this._handleLikeOn = handleLikeOn;
     this._handleLikeOff = handleLikeOff;
+    this._errorPopupOpen = errorPopupOpen;
+    this._deleteCard = deleteCard;
   }
 
   _getTemplate() { // создание пустой карточки из шаблона
@@ -24,42 +26,49 @@ export class Card {
     this._setEventListeners();
     const imageElement = this._element.querySelector('.element__image');
     const textElement = this._element.querySelector('.element__title-text');
-    const likeAmount = this._element.querySelector('.element__like-amount');
+    this._likeAmount = this._element.querySelector('.element__like-amount');
 
     imageElement.src = this._link;
     textElement.textContent = this._name;
     imageElement.alt = this._name;
-    likeAmount.textContent = this._likes;
+    this._likeAmount.textContent = this._likes;
 
     return this._element;
   }
 
   _setEventListeners() {
-    const likeAmount = this._element.querySelector('.element__like-amount');
-
     this._element.querySelector('.element__title-like').addEventListener('click', (evt) => {
       if(evt.target.classList.contains('element__title-like_active')) {
         this._handleLikeOff();
-        this._removeLike();
-        likeAmount.textContent--;
       } else {
         this._handleLikeOn();
-        this._addLike();
-        likeAmount.textContent++;
       }
     })
 
     this._element.querySelector('.element__image').addEventListener('click', () => {
       this._handleCardClick();
     })
+
+    this._element.querySelector('.element__delete').addEventListener('click', () => {
+      this._errorPopupOpen();
+      this._deleteCard();
+    })
   }
 
-  _addLike() { // лайки
+  addLike() { // лайки
     this._element.querySelector('.element__title-like').classList.add('element__title-like_active');
   }
 
-  _removeLike() {
+  removeLike() {
     this._element.querySelector('.element__title-like').classList.remove('element__title-like_active');
+  }
+
+  addLikeAmount() {
+    this._likeAmount.textContent++;
+  }
+
+  removeLikeAmount() {
+    this._likeAmount.textContent--;
   }
 
   _deleteElement() { // удаление карточки

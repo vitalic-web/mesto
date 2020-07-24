@@ -99,13 +99,4 @@ export class Api {
     .then(this._handleResponse)
     .catch(this._handleResponseError)
   }
-
-  getAvatar() {
-    return fetch(`${this._url}/users/me`, {
-      method: this._method,
-      headers: this._headers
-    })
-      .then(this._handleResponse)
-      .catch(this._handleResponseError)
-  }
 }

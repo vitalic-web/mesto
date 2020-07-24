@@ -11,7 +11,9 @@ export class Section {
     })
   }
 
-  addItem(element) {
-    this._container.append(element);
+  addItem(method, element) {
+    if (method === 'append') {
+      this._container.append(element);
+    } else this._container.prepend(element);
   }
 }
