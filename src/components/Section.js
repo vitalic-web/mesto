@@ -6,14 +6,12 @@ export class Section {
   }
 
   renderItems() {
-    this._initialArray.forEach(item => {
+    this._initialArray.reverse().forEach(item => {
       this._renderer(item);
     })
   }
 
-  addItem(method, element) {
-    if (method === 'append') {
-      this._container.append(element);
-    } else this._container.prepend(element);
+  addItem(element) {
+    this._container.prepend(element);
   }
 }

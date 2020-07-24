@@ -107,7 +107,7 @@ api.getInitialCards().then(result => {
       }
 
       cardImage.setEventListeners();
-      cardList.addItem('append', cardElement);
+      cardList.addItem(cardElement);
     }
   }, '.elements');
 
@@ -124,7 +124,7 @@ api.getInitialCards().then(result => {
             const cardElement = generateCardFromTemplate(res);
 
             cardImage.setEventListeners();
-            cardList.addItem('prepend', cardElement);
+            cardList.addItem(cardElement);
           }
           )
       }
