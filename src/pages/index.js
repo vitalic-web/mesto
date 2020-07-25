@@ -84,11 +84,17 @@ function generateCardFromTemplate(cardItem) {
 
   const cardElement = card.generateCard();
 
-  cardItem.likes.forEach(item => { // проверка карточек на наличие и отображение моих лайков
-    if (item._id === 'ea044bafde876847d478303e') {
-      card.addLike();
-    }
+  api.getProfileInfo().then(data => {
+    if ((cardItem.owner._id === data._id)) { // добавление кнопки "удалить" на мои карточки
+    cardElement.querySelector('.element__delete').classList.remove('element__delete_hidden');
+  }
+    cardItem.likes.forEach(item => { // проверка карточек на наличие и отображение моих лайков
+      if ((item._id === data._id)) {
+        card.addLike();
+      }
+    })
   })
+  .catch(err => console.log(err))
 
   return cardElement;
 }
@@ -100,14 +106,6 @@ api.getInitialCards().then(result => {
     items: result,
     renderer: (cardItem) => { // создание карточки с данными с сервера
       const cardElement = generateCardFromTemplate(cardItem);
-
-      // проверка карточек - если мои, то добавление кнопки "удалить", если нет, то кнопка "удалить" скрывается
-      api.getProfileInfo().then(data => {
-        if ((cardItem.owner._id === data._id)) {
-        cardElement.querySelector('.element__delete').classList.remove('element__delete_hidden');
-      }
-      })
-      .catch(err => console.log(err))
 
       cardImage.setEventListeners();
       cardList.addItem(cardElement);
