@@ -13,17 +13,12 @@ export class Api {
     }
   }
 
-  _handleResponseError(err) {
-    return Promise.reject(err.message)
-  }
-
   getProfileInfo() {
     return fetch(`${this._url}/users/me`, {
       method: this._method,
       headers: this._headers
     })
       .then(this._handleResponse)
-      .catch(this._handleResponseError)
   }
 
   getInitialCards() {
@@ -32,7 +27,6 @@ export class Api {
       headers: this._headers
     })
       .then(this._handleResponse)
-      .catch(this._handleResponseError)
   }
 
   setProfileInfo(inputValues) {
@@ -45,7 +39,6 @@ export class Api {
       })
     })
     .then(this._handleResponse)
-    .catch(this._handleResponseError)
   }
 
   addCard(card) {
@@ -58,7 +51,6 @@ export class Api {
       })
     })
     .then(this._handleResponse)
-    .catch(this._handleResponseError)
   }
 
   deleteCard(card) {
@@ -67,7 +59,6 @@ export class Api {
       headers: this._headers
     })
     .then(this._handleResponse)
-    .catch(this._handleResponseError)
   }
 
   addLike(card) {
@@ -76,7 +67,6 @@ export class Api {
       headers: this._headers
     })
     .then(this._handleResponse)
-    .catch(this._handleResponseError)
   }
 
   removeLike(card) {
@@ -85,7 +75,6 @@ export class Api {
       headers: this._headers
     })
     .then(this._handleResponse)
-    .catch(this._handleResponseError)
   }
 
   editAvatar(inputValue) {
@@ -97,6 +86,5 @@ export class Api {
       })
     })
     .then(this._handleResponse)
-    .catch(this._handleResponseError)
   }
 }

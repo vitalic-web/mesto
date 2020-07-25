@@ -9,6 +9,8 @@ export class Card {
     this._handleLikeOff = handleLikeOff;
     this._errorPopupOpen = errorPopupOpen;
     this._deleteCard = deleteCard;
+    this._checkLike = this._checkLike.bind(this);
+    this._errorPopup = this._errorPopup.bind(this);
   }
 
   _getTemplate() { // создание пустой карточки из шаблона
@@ -36,23 +38,29 @@ export class Card {
     return this._element;
   }
 
+  _checkLike(evt) {
+    if(evt.target.classList.contains('element__title-like_active')) {
+      this._handleLikeOff();
+    } else {
+      this._handleLikeOn();
+    }
+  }
+
+  _errorPopup() {
+    this._errorPopupOpen();
+    this._deleteCard();
+  }
+
   _setEventListeners() {
-    this._element.querySelector('.element__title-like').addEventListener('click', (evt) => {
-      if(evt.target.classList.contains('element__title-like_active')) {
-        this._handleLikeOff();
-      } else {
-        this._handleLikeOn();
-      }
-    })
+    this._element.querySelector('.element__title-like').addEventListener('click', this._checkLike);
+    this._element.querySelector('.element__image').addEventListener('click', this._handleCardClick);
+    this._element.querySelector('.element__delete').addEventListener('click', this._errorPopup);
+  }
 
-    this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._handleCardClick();
-    })
-
-    this._element.querySelector('.element__delete').addEventListener('click', () => {
-      this._errorPopupOpen();
-      this._deleteCard();
-    })
+  _removeEventListeners() {
+    this._element.querySelector('.element__title-like').removeEventListener('click', this._checkLike);
+    this._element.querySelector('.element__image').removeEventListener('click', this._handleCardClick);
+    this._element.querySelector('.element__delete').removeEventListener('click', this._errorPopup);
   }
 
   addLike() { // лайки
@@ -71,7 +79,8 @@ export class Card {
     this._likeAmount.textContent--;
   }
 
-  _deleteElement() { // удаление карточки
+  deleteElement() { // удаление карточки
+    this._removeEventListeners();
     this._element.remove();
     this._element = null;
   }

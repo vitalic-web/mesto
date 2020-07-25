@@ -47,7 +47,7 @@ function generateCardFromTemplate(cardItem) {
   const deletePopup = new PopupWithDelete('.popup_is_delete', {
     handleDelete: () => {
       api.deleteCard(cardItem)
-      .then(() => cardElement.remove())
+      .then(() => card.deleteElement())
       .catch(err => Promise.reject(err.message))
     }
   });
