@@ -11,6 +11,12 @@ export class Card {
     this._deleteCard = deleteCard;
     this._checkLike = this._checkLike.bind(this);
     this._errorPopup = this._errorPopup.bind(this);
+    this._element = this._getTemplate();
+    this._textElement = this._element.querySelector('.element__title-text');
+    this._likeAmount = this._element.querySelector('.element__like-amount');
+    this._likeElement = this._element.querySelector('.element__title-like');
+    this._imageElement = this._element.querySelector('.element__image');
+    this._deleteElement = this._element.querySelector('.element__delete');
   }
 
   _getTemplate() { // создание пустой карточки из шаблона
@@ -23,16 +29,12 @@ export class Card {
     return cardElement;
   }
 
-  generateCard() { // создание карточки с контентом, используется метод создания из шаблона
-    this._element = this._getTemplate();
+  generateCard() { // создание карточки с контентом
     this._setEventListeners();
-    const imageElement = this._element.querySelector('.element__image');
-    const textElement = this._element.querySelector('.element__title-text');
-    this._likeAmount = this._element.querySelector('.element__like-amount');
 
-    imageElement.src = this._link;
-    textElement.textContent = this._name;
-    imageElement.alt = this._name;
+    this._imageElement.src = this._link;
+    this._textElement.textContent = this._name;
+    this._imageElement.alt = this._name;
     this._likeAmount.textContent = this._likes;
 
     return this._element;
@@ -52,23 +54,23 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.element__title-like').addEventListener('click', this._checkLike);
-    this._element.querySelector('.element__image').addEventListener('click', this._handleCardClick);
-    this._element.querySelector('.element__delete').addEventListener('click', this._errorPopup);
+    this._likeElement.addEventListener('click', this._checkLike);
+    this._imageElement.addEventListener('click', this._handleCardClick);
+    this._deleteElement.addEventListener('click', this._errorPopup);
   }
 
   _removeEventListeners() {
-    this._element.querySelector('.element__title-like').removeEventListener('click', this._checkLike);
-    this._element.querySelector('.element__image').removeEventListener('click', this._handleCardClick);
-    this._element.querySelector('.element__delete').removeEventListener('click', this._errorPopup);
+    this._likeElement.removeEventListener('click', this._checkLike);
+    this._imageElement.removeEventListener('click', this._handleCardClick);
+    this._deleteElement.removeEventListener('click', this._errorPopup);
   }
 
   addLike() { // лайки
-    this._element.querySelector('.element__title-like').classList.add('element__title-like_active');
+    this._likeElement.classList.add('element__title-like_active');
   }
 
   removeLike() {
-    this._element.querySelector('.element__title-like').classList.remove('element__title-like_active');
+    this._likeElement.classList.remove('element__title-like_active');
   }
 
   addLikeAmount() {

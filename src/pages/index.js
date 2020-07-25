@@ -48,7 +48,7 @@ function generateCardFromTemplate(cardItem) {
     handleDelete: () => {
       api.deleteCard(cardItem)
       .then(() => card.deleteElement())
-      .catch(err => Promise.reject(err.message))
+      .catch(err => console.log(err))
     }
   });
 
@@ -63,7 +63,7 @@ function generateCardFromTemplate(cardItem) {
             card.addLike();
             card.addLikeAmount();
           })
-          .catch(err => Promise.reject(err.message))
+          .catch(err => console.log(err))
       },
       handleLikeOff: () => { // передача колбэком удаления лайка
         api.removeLike(cardItem)
@@ -71,7 +71,7 @@ function generateCardFromTemplate(cardItem) {
             card.removeLike();
             card.removeLikeAmount();
           })
-          .catch(err => Promise.reject(err.message))
+          .catch(err => console.log(err))
       },
       errorPopupOpen: () => { // передача колбэком в слушатель кнопки удаления открытие попап подтверждения
         deletePopup.open();
@@ -102,9 +102,12 @@ api.getInitialCards().then(result => {
       const cardElement = generateCardFromTemplate(cardItem);
 
       // проверка карточек - если мои, то добавление кнопки "удалить", если нет, то кнопка "удалить" скрывается
-      if (!(cardItem.owner._id === 'ea044bafde876847d478303e')) {
-        cardElement.querySelector('.element__delete').classList.add('element__delete_hidden');
+      api.getProfileInfo().then(data => {
+        if ((cardItem.owner._id === data._id)) {
+        cardElement.querySelector('.element__delete').classList.remove('element__delete_hidden');
       }
+      })
+      .catch(err => console.log(err))
 
       cardImage.setEventListeners();
       cardList.addItem(cardElement);
@@ -127,6 +130,7 @@ api.getInitialCards().then(result => {
             cardList.addItem(cardElement);
           }
           )
+          .catch(err => console.log(err))
       }
     })
 
@@ -140,14 +144,14 @@ api.getInitialCards().then(result => {
   })
 
 })
-.catch(err => Promise.reject(err.message))
+.catch(err => console.log(err))
 
 // выгрузка данных профиля с сервера
 api.getProfileInfo().then(data => {
   userProfileInfo.setUserInfo(data);
   avatarImage.src = data.avatar;
 })
-.catch(err => Promise.reject(err.message))
+.catch(err => console.log(err))
 
 // экземпляр класса с информацией о пользователе
 const userProfileInfo = new UserInfo('.profile__title-name', '.profile__subtitle');
@@ -163,7 +167,7 @@ const formUser = new PopupWithForm(
           formUser.saveUX('Сохранить');
           userProfileInfo.setUserInfo(inputValues);
         })
-        .catch(err => Promise.reject(err.message))
+        .catch(err => console.log(err))
     }
   }
 )
@@ -191,7 +195,7 @@ const formAvatar = new PopupWithForm('.popup_edit_avatar', {
         formAvatar.saveUX('Сохранить');
         avatarImage.src = res.avatar;
       })
-      .catch(err => Promise.reject(err.message))
+      .catch(err => console.log(err))
   }
 });
 
