@@ -125,6 +125,7 @@ api.getInitialCards().then(result => {
           .then((res) => {
             formPhoto.saveUX('Создать');
             const cardElement = generateCardFromTemplate(res);
+            cardElement.querySelector('.element__delete').classList.remove('element__delete_hidden');
 
             cardImage.setEventListeners();
             cardList.addItem(cardElement);
