@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="pages/index.css"> -->
+  <title>Проект "Место"</title>
+<link href="main.css" rel="stylesheet"></head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/header__logo.svg" alt="лого">
+    </header>
+
+    <main class="content">
+
+      <section class="profile">
+        <div class="profile__info">
+          <img class="profile__avatar" src="./images/profile__avatar.jpg" alt="аватар">
+          <div class="profile__avatar-editor"></div>
+          <div class="profile__author">
+            <div class="profile__title">
+              <h1 class="profile__title-name">Жак-Ив Кусто</h1>
+              <button class="profile__title-button" type="button"></button>
+            </div>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="profile__add-button" type="button"></button>
+      </section>
+
+      <section class="popup popup_edit_profile">
+        <form class="popup__container">
+          <h3 class="popup__title">Редактировать профиль</h3>
+
+          <input name= "name" class="popup__input popup__input_filed_name" type="text" required pattern="[А-ЯЁа-яёA-Za-z -]{1,}" minlength="2" maxlength="40" id="name-input">
+          <span class="popup__input-error-message" id="name-input-error"></span>
+
+          <input name= "about" class="popup__input popup__input_filed_prof" type="text" required minlength="2" maxlength="200" id="prof-input">
+          <span class="popup__input-error-message" id="prof-input-error"></span>
+
+          <button class="popup__save-button" type="submit">Сохранить</button>
+          <button class="popup__close-icon" type="button"></button>
+        </form>
+      </section>
+
+      <section class="popup popup_add_photo">
+        <form class="popup__container">
+          <h3 class="popup__title">Новое место</h3>
+
+          <input name= "place" class="popup__input popup__input_filed_name" type="text" placeholder="Название" required minlength="1" maxlength="30" id="place-input">
+          <span class="popup__input-error-message" id="place-input-error"></span>
+
+          <input name= "link" class="popup__input popup__input_filed_prof" type="url" placeholder="Ссылка на картинку" required id="link-input">
+          <span class="popup__input-error-message" id="link-input-error"></span>
+
+          <button class="popup__save-button" type="submit">Создать</button>
+          <button class="popup__close-icon" type="button"></button>
+        </form>
+      </section>
+
+      <div class="popup popup_open_photo">
+        <div class="popup-photo">
+          <img class="popup-photo__image"
+            src="#" alt="">
+          <h2 class="popup-photo__text">Название места</h2>
+          <button class="popup__close-icon" type="button"></button>
+        </div>
+      </div>
+
+      <section class="popup popup_is_delete">
+        <form class="popup__container">
+          <h3 class="popup__title popup__title_delete">Вы уверены?</h3>
+          <button class="popup__save-button popup__save-button_delete" type="submit">Да</button>
+          <button class="popup__close-icon" type="button"></button>
+        </form>
+      </section>
+
+      <section class="popup popup_edit_avatar">
+        <form class="popup__container">
+          <h3 class="popup__title">Обновить аватар</h3>
+          <input name= "avatar" class="popup__input popup__input_filed_avatar-link" type="url" placeholder="Ссылка на аватар" required id="avatar-input">
+          <span class="popup__input-error-message" id="avatar-input-error"></span>
+          <button class="popup__save-button" type="submit">Сохранить</button>
+          <button class="popup__close-icon" type="button"></button>
+        </form>
+      </section>
+
+      <section class="elements" aria-label="Элементы"></section>
+
+    </main>
+
+    <footer class="footer">&copy; 2020 Mesto Russia</footer>
+  </div>
+
+  <template id="element-template">
+    <div class="element">
+      <img class="element__image" src="#"
+        alt="">
+      <button class="element__delete element__delete_hidden" type="button"></button>
+      <div class="element__title">
+        <h2 class="element__title-text">Название места</h2>
+        <div class="element__like-container">
+          <button class="element__title-like" type="button"></button>
+          <div class="element__like-amount">14</div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- <script type="module" src="./pages/index.js"></script> -->
+
+<script src="main.js"></script></body>
+
+</html>
